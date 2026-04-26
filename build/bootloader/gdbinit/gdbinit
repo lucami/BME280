@@ -1,0 +1,2 @@
+source /home/milu/Documents/EspIDF/progetti/BME280/build/bootloader/gdbinit/symbols
+source /home/milu/Documents/EspIDF/progetti/BME280/build/bootloader/gdbinit/connect
