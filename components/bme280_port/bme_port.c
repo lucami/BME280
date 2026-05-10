@@ -12,6 +12,13 @@
 static i2c_master_dev_handle_t dev_handle;
 static i2c_master_bus_handle_t bus_handle;
 
+static EventGroupHandle_t bme_event_group;
+
+EventGroupHandle_t getEventGroup()
+{
+	return bme_event_group;
+}
+
 void bme280Port_read_T_coefficients(T_TemperatureCoefficient *ptrTC)
 {
 	uint8_t temp;
@@ -205,7 +212,10 @@ ErrorCode_t bme280_port_init()
 	i2c_register_write_byte(dev_handle, BME280_CONFIG, 0x50); 	// Tstandby 1s, no iir filter, no spi3wire
 	i2c_register_write_byte(dev_handle, BME280_CTRL_HUM, 0x01);	// humidity oversample Hos:no
 	i2c_register_write_byte(dev_handle, BME280_CTRL_MEAS, 0x27); // temperature oversample [2:0] pressure oversample [2:0] mode [1:0]
-	
+	bme_event_group = xEventGroupCreate();
+
+	xEventGroupSetBits(bme_event_group, BME_IS_READY);
+
 	
 	return ERR_GENERIC;
 }
@@ -214,6 +224,7 @@ ErrorCode_t bme280_port_init()
 ErrorCode_t bme280_get_deviceID(uint8_t *rval)
 {
 	i2c_register_read(dev_handle, BME280_WHO_AM_I_REG_ADDR, rval, 1);
+	//xEventGroupSetBits(bme_event_group, BME_NEW_DATA_AVAILABLE);
 
 
 	return ERR_GENERIC;

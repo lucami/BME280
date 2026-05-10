@@ -309,6 +309,61 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/esp_event/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/nvs_flash/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/esp_phy/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/esp_vfs_console/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/vfs/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/lwip/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/esp_netif_stack/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/esp_netif/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/wpa_supplicant/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/esp_coex/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/esp_wifi/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/bme280_port/cmake_install.cmake")
 endif()
 
@@ -319,12 +374,82 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/wifi/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/http_parser/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/esp_http_server/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/json/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/78__esp-wifi-connect/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/espressif__cmake_utilities/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
   include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/espressif__i2c_bus/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/esp_gdbstub/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/bt/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/protobuf-c/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/console/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/protocomm/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/esp_hal_ieee802154/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/ieee802154/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/openthread/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/milu/Documents/EspIDF/progetti/BME280/build/esp-idf/espressif__network_provisioning/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)

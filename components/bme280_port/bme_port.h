@@ -8,6 +8,7 @@
 #ifndef COMPONENTS_BME280_PORT_BME_PORT_H_
 #define COMPONENTS_BME280_PORT_BME_PORT_H_
 
+#include "freertos/idf_additions.h"
 #include <inttypes.h>
 
 //#include "../../core/bme280_core/bme280_core.h"
@@ -50,8 +51,12 @@ void bme280Port_read_P_coefficients(T_PressureCoefficient*);
 int32_t bme280Port_read_T_value(T_TemperatureCoefficient*, int32_t*);
 int32_t bme280Port_read_H_value(T_HumidityCoefficient*, int32_t*);
 int32_t bme280Port_read_P_value(T_PressureCoefficient*, int32_t*);
+EventGroupHandle_t getEventGroup();
 
 ErrorCode_t bme280_port_init();
+
+#define BME_IS_READY 			BIT0
+#define BME_NEW_DATA_AVAILABLE	BIT1
 
 
 #endif /* COMPONENTS_BME280_PORT_BME_PORT_H_ */
