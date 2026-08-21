@@ -7,16 +7,31 @@
  
 #include "bme_port.h"
 #include "bme_port_private.h"
-#include "../../core/bme280_core/bme280_core.h"
+//#include "../../core/bme280_core/bme280_core.h"
 
 static i2c_master_dev_handle_t dev_handle;
 static i2c_master_bus_handle_t bus_handle;
-
+static QueueHandle_t sensorDataQueue;
 static EventGroupHandle_t bme_event_group;
+
+static T_TemperatureCoefficient temp_coeff;
+static T_HumidityCoefficient hum_coeff;
+static T_PressureCoefficient pres_coeff;
+
+static int32_t Temperature_not_calibrated;
+static int32_t Humidity_not_calibrated;
+static int32_t Pressure_not_calibrated;
+
+static int32_t temperature_calibration_factor;
 
 EventGroupHandle_t getEventGroup()
 {
 	return bme_event_group;
+}
+
+QueueHandle_t* bme280Port_getQueueReference()
+{
+	return &sensorDataQueue;
 }
 
 void bme280Port_read_T_coefficients(T_TemperatureCoefficient *ptrTC)
@@ -61,7 +76,7 @@ void bme280Port_read_H_coefficients(T_HumidityCoefficient *ptrHC)
 	ptrHC->H4 += temp&0x0F;
 
 	i2c_register_read(dev_handle, BME280_H5_1_COEFF, &temp, 1);
-	ptrHC->H5 = temp&0xF0;
+	ptrHC->H5 = temp>>4;//temp&0xF0;
 	i2c_register_read(dev_handle, BME280_H5_2_COEFF, &temp, 1);
 	ptrHC->H5 += temp<<4;
 	
@@ -157,48 +172,6 @@ int32_t bme280Port_read_P_value(T_PressureCoefficient *ptrPC, int32_t *ptr)
 	return 0;
 }
 
-int32_t t_fine=0;
-int32_t compensate_T(int32_t notCompensatedTemp, T_TemperatureCoefficient *ptrTC){
-	int32_t var1, var2, T;
-	var1 = ((((notCompensatedTemp>>3) - ((int32_t)ptrTC->T1<<1))) * ((int32_t)ptrTC->T2)) >> 11;
-	var2 = (((((notCompensatedTemp>>4) - ((int32_t)ptrTC->T1)) * ((notCompensatedTemp>>4) - ((int32_t)ptrTC->T1))) >> 12) *	((int32_t)ptrTC->T3)) >> 14;
-       	t_fine = var1 + var2;
-	T =(t_fine*5+128)>>8;
-       	return T;
-}
-
-uint32_t compensate_H(int32_t adc_H, T_HumidityCoefficient *ptrHC) {
-
-    int32_t v_x1_u32r;
-    v_x1_u32r = (t_fine-((int32_t)76800));
-    v_x1_u32r = (((((adc_H << 14)-(((int32_t)ptrHC->H4) << 20)-(((int32_t)ptrHC->H5) * v_x1_u32r)) +((int32_t)16384)) >> 15) * (((((((v_x1_u32r * ((int32_t)ptrHC->H6)) >> 10) * (((v_x1_u32r * ((int32_t)ptrHC->H3)) >> 11) + ((int32_t)32768))) >> 10) + ((int32_t)2097152)) * ((int32_t)ptrHC->H2) + 8192) >> 14));
-    v_x1_u32r = (v_x1_u32r-(((((v_x1_u32r >> 15) * (v_x1_u32r >> 15)) >> 7) * ((int32_t)ptrHC->H1)) >> 4));
-    v_x1_u32r = (v_x1_u32r < 0 ? 0 : v_x1_u32r);
-    v_x1_u32r = (v_x1_u32r > 419430400 ? 419430400 : v_x1_u32r);
-    return (uint32_t)(v_x1_u32r>>12);
-}
-
-uint32_t compensate_P(int32_t adc_P, T_PressureCoefficient *ptrPC)
-{
-	int64_t var1, var2, p;
-	var1 = ((int64_t)t_fine)-128000;
-	var2 = var1 * var1 * (int64_t)ptrPC->P6;
-	var2 = var2 + ((var1*(int64_t)ptrPC->P5)<<17);
-	var2 = var2 + (((int64_t)ptrPC->P4)<<35);
-	var1 = ((var1 * var1 * (int64_t)ptrPC->P3)>>8) + ((var1 * (int64_t)ptrPC->P2)<<12);
-    var1 = (((((int64_t)1)<<47)+var1))*((int64_t)ptrPC->P1)>>33;
-	if (var1 == 0)
-	{
-		return 0; // avoid exception caused by division by zero
-	}
-	p = 1048576-adc_P;
-	p = (((p<<31)-var2)*3125)/var1;
-	var1 = (((int64_t)ptrPC->P9) * (p>>13) * (p>>13)) >> 25;
-	var2 = (((int64_t)ptrPC->P8) * p) >> 19;
-	p = ((p + var1 + var2) >> 8) + (((int64_t)ptrPC->P7)<<4);
-	return (uint32_t)p;
-}
-
 
 ErrorCode_t bme280_port_init()
 {
@@ -214,12 +187,12 @@ ErrorCode_t bme280_port_init()
 	i2c_register_write_byte(dev_handle, BME280_CTRL_MEAS, 0x27); // temperature oversample [2:0] pressure oversample [2:0] mode [1:0]
 	bme_event_group = xEventGroupCreate();
 
+	sensorDataQueue = xQueueCreate(1, sizeof(BME280_Data_t));
 	xEventGroupSetBits(bme_event_group, BME_IS_READY);
 
-	
+
 	return ERR_GENERIC;
 }
-
 
 ErrorCode_t bme280_get_deviceID(uint8_t *rval)
 {

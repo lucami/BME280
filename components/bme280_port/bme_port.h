@@ -10,16 +10,27 @@
 
 #include "freertos/idf_additions.h"
 #include <inttypes.h>
-
+ #include "freertos/FreeRTOS.h"
+ #include "freertos/queue.h"
 //#include "../../core/bme280_core/bme280_core.h"
 
 typedef int32_t ErrorCode_t;
 
 
+
+typedef struct 
+ {
+    int32_t t;
+    int32_t h;
+    int32_t p;
+	uint32_t counter;
+ } BME280_Data_t;
+
+
 typedef struct {
 	uint32_t T1;
-	int32_t  T2;
-	int32_t T3;
+	int16_t  T2;
+	int16_t T3;
 } T_TemperatureCoefficient;
 
 typedef struct {
@@ -37,6 +48,9 @@ typedef struct{
 #define ERR_GENERIC		    ((ErrorCode_t)1)
 
 #define BME280_SENSOR_ADDR         0x76
+
+QueueHandle_t* bme280Port_getQueueReference();
+
 
 ErrorCode_t bme280_init();
 ErrorCode_t bme280_get_deviceID(uint8_t*);

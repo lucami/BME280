@@ -45,7 +45,8 @@
     return T;
  }
 
- static uint32_t compensate_H() {
+ static uint32_t compensate_H() 
+ {
 
      int32_t v_x1_u32r;
      v_x1_u32r = (temperature_calibration_factor-((int32_t)76800));
@@ -78,11 +79,14 @@
  }
 
 
+
+ 
  uint8_t bme280_core_init()
  {
 	printf("\nCore init");
  	bme280_port_init();
  	read_all_coefficients();
+
  	
  	return 1;
  }

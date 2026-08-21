@@ -1,4 +1,4 @@
-/* * Data converted from /home/milu/Documents/EspIDF/progetti/BME280/managed_components/78__esp-wifi-connect/assets/wifi_configuration.html
+/* * Data converted from /home/milu/Documents/Progetti/ESP/BME280/managed_components/78__esp-wifi-connect/assets/wifi_configuration.html
  * (null byte appended)
  */
 .data

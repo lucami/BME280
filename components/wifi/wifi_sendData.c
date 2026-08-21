@@ -4,19 +4,24 @@
 #include <wifi_connect.h>
 #include "bme_port.h"
 
-#include "bme280_core.h"
+//#include "bme280_core.h"
 #include "lwip/sockets.h"
 #include "lwip/netdb.h"
 
 static EventGroupHandle_t bme_event_group = 0;
 extern EventGroupHandle_t wifi_event_group;
+static QueueHandle_t *sensorDataQueueReference;
 
 
 void wifi_sendData(void *pvParameters)
 {
-	int32_t h,t,p;
-	char payload[64];
+	BME280_Data_t data;
 	
+	char payload[64];
+	static uint32_t i=0;
+
+	sensorDataQueueReference = bme280Port_getQueueReference();
+
 	while(bme_event_group == 0)
 		bme_event_group = getEventGroup();
 	
@@ -31,17 +36,19 @@ void wifi_sendData(void *pvParameters)
 	struct sockaddr_in dest = {
 	        .sin_family      = AF_INET,
 	        .sin_port        = htons(6660),
-	        .sin_addr.s_addr = inet_addr("192.168.1.10")
+	        .sin_addr.s_addr = inet_addr("192.168.1.17")
 	    };
+		
 	while(1)
 	{
 		
-		bme280_core_getTHP(&t,&h,&p);
-		int len = snprintf(payload, 64, "\nT: %"PRIi32"; H: %"PRIi32"; P: %"PRIi32"", t,h/1024,p/256/100);
-		printf("\nwifi send task running");
+		xQueuePeek(*sensorDataQueueReference, &data, 1000);
+
+		int len = snprintf(payload, 64, "\n%"PRIi32")T: %"PRIi32"; H: %"PRIi32"; P: %"PRIi32"", i++, data.t,data.h/1024,data.p/256/100);
+		//printf("\nwifi send task running");
 		int err = sendto(sock, payload, len, 0,(struct sockaddr *)&dest, sizeof(dest));
 
-		vTaskDelay(1000 / portTICK_PERIOD_MS);
+		vTaskDelay(1000*60 / portTICK_PERIOD_MS);
 	}
 	vTaskDelete(NULL);
 }

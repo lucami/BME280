@@ -4,6 +4,7 @@ idf_component_register(
     PRIV_REQUIRES spi_flash
     REQUIRES i2c esp_wifi
     REQUIRES "bme280_core"  wifi
+    REQUIRES "mqtt_client_comp"
 )
 
                        

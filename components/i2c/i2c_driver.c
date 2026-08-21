@@ -12,8 +12,8 @@
 void i2c_master_init(i2c_master_bus_handle_t *bus_handle, i2c_master_dev_handle_t *dev_handle, uint8_t device_address)
  {
  	i2c_master_bus_config_t bus_config = {
- 		.i2c_port = I2C_MASTER_NUM,
- 		.sda_io_num = CONFIG_I2C_MASTER_SDA,
+ 		.i2c_port = I2C_NUM_0,
+ 		.sda_io_num = I2C_MASTER_SDA_IO,
  		.scl_io_num = I2C_MASTER_SCL_IO,
  		.clk_source = I2C_CLK_SRC_DEFAULT,
  		.glitch_ignore_cnt = 7,

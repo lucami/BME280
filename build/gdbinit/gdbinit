@@ -1,2 +1,2 @@
-source /home/milu/Documents/EspIDF/progetti/BME280/build/gdbinit/symbols
-source /home/milu/Documents/EspIDF/progetti/BME280/build/gdbinit/connect
+source /home/milu/Documents/Progetti/ESP/BME280/build/gdbinit/symbols
+source /home/milu/Documents/Progetti/ESP/BME280/build/gdbinit/connect

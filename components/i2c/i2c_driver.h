@@ -1,3 +1,4 @@
+
 /*
  * i2c_driver.h
  *
@@ -9,6 +10,12 @@
 #define MAIN_DRIVER_I2C_I2C_DRIVER_H_
 
 #include "driver/i2c_master.h"
+
+#define I2C_MASTER_NUM         I2C_NUM_0
+#define I2C_MASTER_SDA_IO      5
+#define I2C_MASTER_SCL_IO      4
+#define I2C_MASTER_FREQ_HZ     100000
+#define I2C_MASTER_TIMEOUT_MS  1000
 
 
 void i2c_master_init(i2c_master_bus_handle_t *bus_handle, i2c_master_dev_handle_t *dev_handle, uint8_t device_address);

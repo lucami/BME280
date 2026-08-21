@@ -1,0 +1,19 @@
+{
+  "idf.espIdfPath": "/home/milu/.espressif/v6.0.2/esp-idf",
+  "idf.toolsPath": "/home/milu/.espressif/tools",
+  "idf.pythonBinPath": "/home/milu/.espressif/tools/python/v6.0.2/venv/bin/python3",
+  "idf.customExtraPaths": "/home/milu/.espressif/tools/cmake/4.0.3/bin:/home/milu/.espressif/tools/esp-clang/esp-20.1.1_20250829/esp-clang/bin:/home/milu/.espressif/tools/esp-rom-elfs/20241011/:/home/milu/.espressif/tools/ninja/1.12.1/:/home/milu/.espressif/tools/openocd-esp32/v0.12.0-esp32-20260424/openocd-esp32/bin:/home/milu/.espressif/tools/qemu-riscv32/esp_develop_9.2.2_20250817/qemu/bin:/home/milu/.espressif/tools/riscv32-esp-elf-gdb/17.1_20260402/riscv32-esp-elf-gdb/bin:/home/milu/.espressif/tools/riscv32-esp-elf/esp-15.2.0_20251204/riscv32-esp-elf/bin:/home/milu/.espressif/tools/riscv32-esp-elf/esp-15.2.0_20251204/riscv32-esp-elf/riscv32-esp-elf/bin:/home/milu/.espressif/tools/python/v6.0.2/venv/bin",
+  "idf.customExtraVars": {
+    "IDF_TARGET": "esp32c3"
+  },
+  "clangd.path": "/home/milu/.espressif/tools/esp-clang/esp-20.1.1_20250829/esp-clang/bin/clangd",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=**",
+    "--compile-commands-dir=/home/milu/Documents/Progetti/ESP/BME280/build"
+  ],
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "idf.currentSetup": "/home/milu/.espressif/v6.0.2/esp-idf",
+  "idf.flashType": "UART",
+  "idf.port": "/dev/ttyACM0"
+}
