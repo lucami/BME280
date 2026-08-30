@@ -36,7 +36,7 @@ void wifi_sendData(void *pvParameters)
 	struct sockaddr_in dest = {
 	        .sin_family      = AF_INET,
 	        .sin_port        = htons(6660),
-	        .sin_addr.s_addr = inet_addr("192.168.1.17")
+	        .sin_addr.s_addr = inet_addr("192.168.1.19")
 	    };
 		
 	while(1)

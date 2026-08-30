@@ -144,9 +144,11 @@
 /home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/tcp_transport/libtcp_transport.a
 /home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/espressif__mqtt/lib/mqtt_utils/libmqtt_utils_lib.a
 /home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/espressif__mqtt/lib/mqtt_outbox/libmqtt_outbox_lib.a
+/home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/nvs_component/libnvs_component.a
 /home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/mqtt_client_comp/libmqtt_client_comp.a
 /home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/espressif__mqtt/libespressif__mqtt.a
 /home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/wifi/libwifi.a
+/home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/nvs_component/libnvs_component.a
 /home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/esp_http_server/libesp_http_server.a
 /home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/espressif__cjson/libespressif__cjson.a
 /home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/78__esp-wifi-connect/lib78__esp-wifi-connect.a

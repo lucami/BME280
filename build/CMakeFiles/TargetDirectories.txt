@@ -722,6 +722,13 @@
 /home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/espressif__mqtt/lib/mqtt_outbox/CMakeFiles/install.dir
 /home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/espressif__mqtt/lib/mqtt_outbox/CMakeFiles/install/local.dir
 /home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/espressif__mqtt/lib/mqtt_outbox/CMakeFiles/install/strip.dir
+/home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/nvs_component/CMakeFiles/__idf_nvs_component.dir
+/home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/nvs_component/CMakeFiles/edit_cache.dir
+/home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/nvs_component/CMakeFiles/rebuild_cache.dir
+/home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/nvs_component/CMakeFiles/list_install_components.dir
+/home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/nvs_component/CMakeFiles/install.dir
+/home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/nvs_component/CMakeFiles/install/local.dir
+/home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/nvs_component/CMakeFiles/install/strip.dir
 /home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/mqtt_client_comp/CMakeFiles/__idf_mqtt_client_comp.dir
 /home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/mqtt_client_comp/CMakeFiles/edit_cache.dir
 /home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/mqtt_client_comp/CMakeFiles/rebuild_cache.dir

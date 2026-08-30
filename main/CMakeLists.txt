@@ -5,6 +5,7 @@ idf_component_register(
     REQUIRES i2c esp_wifi
     REQUIRES "bme280_core"  wifi
     REQUIRES "mqtt_client_comp"
+    REQUIRES "nvs_component"
 )
 
                        

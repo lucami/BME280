@@ -101,6 +101,7 @@
 		"/home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/espressif__mqtt/cmake_install.cmake",
 		"/home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/espressif__mqtt/lib/mqtt_utils/cmake_install.cmake",
 		"/home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/espressif__mqtt/lib/mqtt_outbox/cmake_install.cmake",
+		"/home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/nvs_component/cmake_install.cmake",
 		"/home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/mqtt_client_comp/cmake_install.cmake",
 		"/home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/esp_http_server/cmake_install.cmake",
 		"/home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/espressif__cjson/cmake_install.cmake",

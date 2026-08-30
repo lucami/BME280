@@ -144,9 +144,11 @@ $<TARGET_FILE:idf::espressif__mqtt>
 $<TARGET_FILE:__idf_tcp_transport>
 $<TARGET_FILE:idf::mqtt::utils>
 $<TARGET_FILE:idf::mqtt::outbox>
+$<TARGET_FILE:idf::nvs_component>
 $<TARGET_FILE:idf::mqtt_client_comp>
 $<TARGET_FILE:__idf_espressif__mqtt>
 $<TARGET_FILE:__idf_wifi>
+$<TARGET_FILE:__idf_nvs_component>
 $<TARGET_FILE:idf::esp_http_server>
 $<TARGET_FILE:idf::espressif__cjson>
 $<TARGET_FILE:idf::78__esp-wifi-connect>

@@ -1,8 +1,4 @@
-/*
- * SPDX-FileCopyrightText: 2010-2022 Espressif Systems (Shanghai) CO LTD
- *
- * SPDX-License-Identifier: CC0-1.0
- */
+
 
 #include <stdio.h>
 #include <inttypes.h>
@@ -18,7 +14,7 @@
 #include "wifi_sendData.h"
 #include "bme_port.h"
 #include "mqtt_sendData.h"
-
+#include "nvs_component.h"
 
 #define CONFIG_ESP_WIFI_AUTH_OPEN	1
 #define WIFI_CONNECTED_BIT BIT0
@@ -53,7 +49,20 @@ void ReadSensor_Task(void *pvParameters)
 
 void app_main(void)
 {
+
+	char topic[64];
+	size_t topic_len = 64;
+	uint8_t rval8;
+
 	printf("Starting FreeRTOS tasks...\n");
+	nvs_init();
+
+	rval8 = nvs_readKey("CONFI", "TOPIC", topic, &topic_len);
+
+	if(rval8 == NVS_ERROR_OPEN_NAMESPACE)
+		nvs_writeKey("CONFI", "TOPIC", "config/location");
+
+
 	wifi_start();
 	mqtt_init();
 	sensorDataQueueReference = bme280Port_getQueueReference();
