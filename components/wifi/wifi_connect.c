@@ -10,11 +10,8 @@
 
 #define WIFI_SSID      "Vodafone-A53646625"
 #define WIFI_PASSWORD  "hhte8yeb87czzsm9"
-#define WIFI_MAX_RETRY 5
 
 static const char *TAG = "wifi";
-static int retry_count = 0;
-
 EventGroupHandle_t wifi_event_group;
 
 static void event_handler(void *arg, esp_event_base_t event_base,
@@ -23,20 +20,15 @@ static void event_handler(void *arg, esp_event_base_t event_base,
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
         esp_wifi_connect();
 
-    } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
-        if (retry_count < WIFI_MAX_RETRY) {
-            esp_wifi_connect();
-            retry_count++;
-            ESP_LOGW(TAG, "Retry %d/%d", retry_count, WIFI_MAX_RETRY);
-        } else {
-            xEventGroupSetBits(wifi_event_group, WIFI_FAIL_BIT);
-            ESP_LOGE(TAG, "Connessione fallita");
-        }
-
-    } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
+    } 
+    else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) 
+    {  
+        xEventGroupClearBits(wifi_event_group, WIFI_CONNECTED_BIT);
+        esp_wifi_connect();
+    }
+    else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
         ip_event_got_ip_t *event = (ip_event_got_ip_t *)event_data;
         ESP_LOGI(TAG, "IP: " IPSTR, IP2STR(&event->ip_info.ip));
-        retry_count = 0;
         xEventGroupSetBits(wifi_event_group, WIFI_CONNECTED_BIT);
     }
 }
@@ -68,14 +60,12 @@ static void wifi_task(void *pvParameters)
     ESP_ERROR_CHECK(esp_wifi_start());
 
     EventBits_t bits = xEventGroupWaitBits(wifi_event_group,
-                        WIFI_CONNECTED_BIT | WIFI_FAIL_BIT,
+                        WIFI_CONNECTED_BIT ,
                         pdFALSE, pdFALSE, portMAX_DELAY);
 
     if (bits & WIFI_CONNECTED_BIT) {
         ESP_LOGI(TAG, "Connessa al WiFi");
-    } else if (bits & WIFI_FAIL_BIT) {
-        ESP_LOGE(TAG, "Impossibile connettersi");
-    }
+    } 
 
     vTaskDelete(NULL);
 }

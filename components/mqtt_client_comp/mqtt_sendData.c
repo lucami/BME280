@@ -80,7 +80,7 @@ void mqtt_Task(void *pvParameters)
 	while(bme_event_group == 0)
 		bme_event_group = getEventGroup();
 	
-	xEventGroupWaitBits(wifi_event_group, WIFI_CONNECTED_BIT | WIFI_FAIL_BIT, pdFALSE, pdFALSE, portMAX_DELAY);
+	xEventGroupWaitBits(wifi_event_group, WIFI_CONNECTED_BIT , pdFALSE, pdFALSE, portMAX_DELAY);
 	xEventGroupWaitBits(bme_event_group, BME_IS_READY, pdFALSE,pdFALSE, portMAX_DELAY);
 
 	printf("\ndebug Ready to send mqtt data");
@@ -95,7 +95,7 @@ void mqtt_Task(void *pvParameters)
 		esp_mqtt_client_publish(mqtt_client, mqtt_current_topic	, payload, length, 0, 0);
 
 		timeout = update_status_get_timeout();
-		printf("\ndebug timeout: %"PRIi32"\n", timeout/portTICK_PERIOD_MS);
+		printf("\ndebug timeout: %"PRIi32"\n", timeout);
 
 		vTaskDelay(timeout);
 	}

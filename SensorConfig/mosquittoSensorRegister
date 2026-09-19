@@ -1,0 +1,7 @@
+mosquitto_sub -h 192.168.1.17 -p 1883 -t "casa/presenting" -v
+
+mosquitto_pub -h 192.168.1.17 -p 1883 -t "casa/set" -m "casa/studio/htp"
+
+mosquitto_sub -h <ip-broker> -p 1883 -t "casa/+/htp" -v
+
+mosquitto_sub -h localhost -p 1883 -t "casa/#" -v

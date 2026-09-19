@@ -58,13 +58,13 @@ ErrorCode_t bme280_get_P(uint32_t*);
 ErrorCode_t bme280_get_T(uint32_t*);
 ErrorCode_t bme280_get_v(uint32_t*);
 
-void bme280Port_read_T_coefficients(T_TemperatureCoefficient*);
-void bme280Port_read_H_coefficients(T_HumidityCoefficient*);
-void bme280Port_read_P_coefficients(T_PressureCoefficient*);
+ErrorCode_t bme280Port_read_T_coefficients(T_TemperatureCoefficient*);
+ErrorCode_t bme280Port_read_H_coefficients(T_HumidityCoefficient*);
+ErrorCode_t bme280Port_read_P_coefficients(T_PressureCoefficient*);
 
-int32_t bme280Port_read_T_value(T_TemperatureCoefficient*, int32_t*);
-int32_t bme280Port_read_H_value(T_HumidityCoefficient*, int32_t*);
-int32_t bme280Port_read_P_value(T_PressureCoefficient*, int32_t*);
+ErrorCode_t bme280Port_read_T_value(T_TemperatureCoefficient*, int32_t*);
+ErrorCode_t bme280Port_read_H_value(T_HumidityCoefficient*, int32_t*);
+ErrorCode_t bme280Port_read_P_value(T_PressureCoefficient*, int32_t*);
 EventGroupHandle_t getEventGroup();
 
 ErrorCode_t bme280_port_init();

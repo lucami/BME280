@@ -18,7 +18,6 @@
 
 #define CONFIG_ESP_WIFI_AUTH_OPEN	1
 #define WIFI_CONNECTED_BIT BIT0
-#define WIFI_FAIL_BIT      BIT1
 
 static QueueHandle_t *sensorDataQueueReference;
 

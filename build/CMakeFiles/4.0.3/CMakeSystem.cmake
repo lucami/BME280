@@ -1,6 +1,6 @@
-set(CMAKE_HOST_SYSTEM "Linux-6.12.101+deb13-amd64")
+set(CMAKE_HOST_SYSTEM "Linux-6.12.107+deb13-amd64")
 set(CMAKE_HOST_SYSTEM_NAME "Linux")
-set(CMAKE_HOST_SYSTEM_VERSION "6.12.101+deb13-amd64")
+set(CMAKE_HOST_SYSTEM_VERSION "6.12.107+deb13-amd64")
 set(CMAKE_HOST_SYSTEM_PROCESSOR "x86_64")
 
 include("/home/milu/Documents/Progetti/ESP/BME280/build/toolchain/toolchain-esp32c3.cmake")

@@ -26,7 +26,7 @@ void wifi_sendData(void *pvParameters)
 		bme_event_group = getEventGroup();
 	
 	xEventGroupWaitBits(wifi_event_group,
-	                        WIFI_CONNECTED_BIT | WIFI_FAIL_BIT,
+	                        WIFI_CONNECTED_BIT,
 	                        pdFALSE, pdFALSE, portMAX_DELAY);
 	xEventGroupWaitBits(bme_event_group, BME_IS_READY, pdFALSE,
 						pdFALSE, portMAX_DELAY);
@@ -36,7 +36,7 @@ void wifi_sendData(void *pvParameters)
 	struct sockaddr_in dest = {
 	        .sin_family      = AF_INET,
 	        .sin_port        = htons(6660),
-	        .sin_addr.s_addr = inet_addr("192.168.1.19")
+	        .sin_addr.s_addr = inet_addr("192.168.1.17")
 	    };
 		
 	while(1)
