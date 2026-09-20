@@ -21,18 +21,22 @@
  static int32_t temperature_calibration_factor;
 
 
- static void read_all_coefficients()
+ static BME280_ErrorCode_t read_all_coefficients()
  {
- 	bme280Port_read_T_coefficients(&temp_coeff);
- 	bme280Port_read_H_coefficients(&hum_coeff);
-	bme280Port_read_P_coefficients(&pres_coeff);
+ 	BME280_ErrorCode_t rval = BME280_OK;
+ 	rval |= bme280Port_read_T_coefficients(&temp_coeff);
+ 	rval |= bme280Port_read_H_coefficients(&hum_coeff);
+	rval |= bme280Port_read_P_coefficients(&pres_coeff);
+ 	return rval;
  }
 
- static void read_all_values()
+ static BME280_ErrorCode_t read_all_values()
  {
- 	bme280Port_read_T_value(&temp_coeff,&Temperature_not_calibrated);
- 	bme280Port_read_H_value(&hum_coeff, &Humidity_not_calibrated);
- 	bme280Port_read_P_value(&pres_coeff, &Pressure_not_calibrated);
+ 	BME280_ErrorCode_t rval = BME280_OK;
+ 	rval |= bme280Port_read_T_value(&temp_coeff,&Temperature_not_calibrated);
+ 	rval |= bme280Port_read_H_value(&hum_coeff, &Humidity_not_calibrated);
+ 	rval |= bme280Port_read_P_value(&pres_coeff, &Pressure_not_calibrated);
+ 	return rval;
  }
 
  static int32_t compensate_T()
@@ -81,28 +85,28 @@
 
 
  
- uint8_t bme280_core_init()
+ BME280_ErrorCode_t bme280_core_init()
  {
+	BME280_ErrorCode_t rval = BME280_OK;
 	printf("\nCore init");
- 	bme280_port_init();
- 	read_all_coefficients();
+ 	rval |= bme280_port_init();
+ 	rval |= read_all_coefficients();
 
- 	
- 	return 1;
+
+ 	return rval;
  }
 
- uint8_t bme280_core_deviceID(uint8_t *ptr)
+ BME280_ErrorCode_t bme280_core_deviceID(uint8_t *ptr)
  {
-	bme280_get_deviceID(ptr);
-	return 0;
+	return bme280_get_deviceID(ptr);
  }
 
- uint8_t bme280_core_getTHP(int32_t *t, int32_t *h, int32_t *p)
+ BME280_ErrorCode_t bme280_core_getTHP(int32_t *t, int32_t *h, int32_t *p)
  {
-	read_all_values();
+	BME280_ErrorCode_t rval = read_all_values();
 	*t = compensate_T();
 	*h = compensate_H();
 	*p = compensate_P();
 
- 	return 0;
+ 	return rval;
  }
