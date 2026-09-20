@@ -1,0 +1,59 @@
+Command: cmake -G Ninja -B /home/milu/Documents/Progetti/ESP/BME280/build -DPYTHON_DEPS_CHECKED=1 -DPYTHON=/home/milu/.espressif/tools/python/v6.0.2/venv/bin/python -DESP_PLATFORM=1 -DCCACHE_ENABLE=False /home/milu/Documents/Progetti/ESP/BME280
+-- Component directory /home/milu/.espressif/v6.0.2/esp-idf/components/mqtt does not contain a CMakeLists.txt file. No component will be added
+-- Minimal build - ON
+-- Building ESP-IDF components for target esp32c3
+NOTICE: Processing 7 dependencies:
+NOTICE: [1/7] 78/esp-wifi-connect (3.1.3)
+NOTICE: [2/7] espressif/cjson (1.7.19~2)
+NOTICE: [3/7] espressif/cmake_utilities (1.1.1)
+NOTICE: [4/7] espressif/i2c_bus (1.5.0)
+NOTICE: [5/7] espressif/mqtt (1.1.0)
+NOTICE: [6/7] espressif/network_provisioning (1.2.4)
+NOTICE: [7/7] idf (6.0.2)
+-- Using esp_driver_i2c (SRC_FILE=i2c_bus_v2.c, REQ=esp_driver_i2c driver)
+-- ESP-TEE is currently supported only on the esp32c6;esp32h2;esp32c5;esp32c61 SoCs
+-- KCONFIG_REPORT_VERBOSITY not set, using default
+-- Project sdkconfig file /home/milu/Documents/Progetti/ESP/BME280/sdkconfig
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/riscv/ld/rom.api.ld
+-- App "hello_world" version: d92a015-dirty
+-- Setting up mbedtls configuration
+-- Linkage type is PUBLIC
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/esp_system/ld/esp32c3/memory.ld.in
+--   -> Preprocessing .in script: /home/milu/.espressif/v6.0.2/esp-idf/components/esp_system/ld/esp32c3/memory.ld.in
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/esp_system/ld/esp32c3/sections.ld.in
+--   -> Preprocessing .in script: /home/milu/.espressif/v6.0.2/esp-idf/components/esp_system/ld/esp32c3/sections.ld.in
+--   -> Applying ldgen processing: /home/milu/Documents/Progetti/ESP/BME280/build/esp-idf/esp_system/ld/sections.ld.in
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ld
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.api.ld
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.bt_funcs.ld
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.libgcc.ld
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.version.ld
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_master.ld
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_50.ld
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_smp.ld
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_dtm.ld
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_test.ld
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.ble_scan.ld
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.eco3.ld
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.eco3_bt_funcs.ld
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/esp_rom/esp32c3/ld/esp32c3.rom.libc.ld
+-- Adding linker script /home/milu/.espressif/v6.0.2/esp-idf/components/soc/esp32c3/ld/esp32c3.peripherals.ld
+-- Using esp_driver_i2c (SRC_FILE=i2c_bus_v2.c, REQ=esp_driver_i2c driver)
+-- I2C_BUS: 1.5.0
+-- Components: 78__esp-wifi-connect app_update bme280_core bme280_port bootloader bootloader_support bt console cxx driver efuse esp-tls esp_app_format esp_blockdev esp_bootloader_format esp_coex esp_common esp_driver_dma esp_driver_gpio esp_driver_i2c esp_driver_spi esp_driver_uart esp_driver_usb_serial_jtag esp_event esp_gdbstub esp_hal_ana_conv esp_hal_clock esp_hal_dma esp_hal_gpio esp_hal_gpspi esp_hal_i2c esp_hal_i2s esp_hal_ieee802154 esp_hal_mspi esp_hal_pmu esp_hal_rtc_timer esp_hal_security esp_hal_timg esp_hal_touch_sens esp_hal_twai esp_hal_uart esp_hal_usb esp_hal_wdt esp_http_server esp_hw_support esp_libc esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_security esp_stdio esp_system esp_timer esp_usb_cdc_rom_console esp_wifi espressif__cjson espressif__cmake_utilities espressif__i2c_bus espressif__mqtt espressif__network_provisioning esptool_py freertos hal heap http_parser i2c ieee802154 log lwip main mbedtls mqtt_client_comp nvs_component nvs_flash nvs_sec_provider openthread partition_table protobuf-c protocomm pthread riscv soc spi_flash tcp_transport vfs wifi wpa_supplicant
+-- Component paths: /home/milu/Documents/Progetti/ESP/BME280/managed_components/78__esp-wifi-connect /home/milu/.espressif/v6.0.2/esp-idf/components/app_update /home/milu/Documents/Progetti/ESP/BME280/core/bme280_core /home/milu/Documents/Progetti/ESP/BME280/components/bme280_port /home/milu/.espressif/v6.0.2/esp-idf/components/bootloader /home/milu/.espressif/v6.0.2/esp-idf/components/bootloader_support /home/milu/.espressif/v6.0.2/esp-idf/components/bt /home/milu/.espressif/v6.0.2/esp-idf/components/console /home/milu/.espressif/v6.0.2/esp-idf/components/cxx /home/milu/.espressif/v6.0.2/esp-idf/components/driver /home/milu/.espressif/v6.0.2/esp-idf/components/efuse /home/milu/.espressif/v6.0.2/esp-idf/components/esp-tls /home/milu/.espressif/v6.0.2/esp-idf/components/esp_app_format /home/milu/.espressif/v6.0.2/esp-idf/components/esp_blockdev /home/milu/.espressif/v6.0.2/esp-idf/components/esp_bootloader_format /home/milu/.espressif/v6.0.2/esp-idf/components/esp_coex /home/milu/.espressif/v6.0.2/esp-idf/components/esp_common /home/milu/.espressif/v6.0.2/esp-idf/components/esp_driver_dma /home/milu/.espressif/v6.0.2/esp-idf/components/esp_driver_gpio /home/milu/.espressif/v6.0.2/esp-idf/components/esp_driver_i2c /home/milu/.espressif/v6.0.2/esp-idf/components/esp_driver_spi /home/milu/.espressif/v6.0.2/esp-idf/components/esp_driver_uart /home/milu/.espressif/v6.0.2/esp-idf/components/esp_driver_usb_serial_jtag /home/milu/.espressif/v6.0.2/esp-idf/components/esp_event /home/milu/.espressif/v6.0.2/esp-idf/components/esp_gdbstub /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_ana_conv /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_clock /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_dma /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_gpio /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_gpspi /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_i2c /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_i2s /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_ieee802154 /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_mspi /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_pmu /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_rtc_timer /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_security /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_timg /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_touch_sens /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_twai /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_uart /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_usb /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hal_wdt /home/milu/.espressif/v6.0.2/esp-idf/components/esp_http_server /home/milu/.espressif/v6.0.2/esp-idf/components/esp_hw_support /home/milu/.espressif/v6.0.2/esp-idf/components/esp_libc /home/milu/.espressif/v6.0.2/esp-idf/components/esp_mm /home/milu/.espressif/v6.0.2/esp-idf/components/esp_netif /home/milu/.espressif/v6.0.2/esp-idf/components/esp_netif_stack /home/milu/.espressif/v6.0.2/esp-idf/components/esp_partition /home/milu/.espressif/v6.0.2/esp-idf/components/esp_phy /home/milu/.espressif/v6.0.2/esp-idf/components/esp_pm /home/milu/.espressif/v6.0.2/esp-idf/components/esp_psram /home/milu/.espressif/v6.0.2/esp-idf/components/esp_ringbuf /home/milu/.espressif/v6.0.2/esp-idf/components/esp_rom /home/milu/.espressif/v6.0.2/esp-idf/components/esp_security /home/milu/.espressif/v6.0.2/esp-idf/components/esp_stdio /home/milu/.espressif/v6.0.2/esp-idf/components/esp_system /home/milu/.espressif/v6.0.2/esp-idf/components/esp_timer /home/milu/.espressif/v6.0.2/esp-idf/components/esp_usb_cdc_rom_console /home/milu/.espressif/v6.0.2/esp-idf/components/esp_wifi /home/milu/Documents/Progetti/ESP/BME280/managed_components/espressif__cjson /home/milu/Documents/Progetti/ESP/BME280/managed_components/espressif__cmake_utilities /home/milu/Documents/Progetti/ESP/BME280/managed_components/espressif__i2c_bus /home/milu/Documents/Progetti/ESP/BME280/managed_components/espressif__mqtt /home/milu/Documents/Progetti/ESP/BME280/managed_components/espressif__network_provisioning /home/milu/.espressif/v6.0.2/esp-idf/components/esptool_py /home/milu/.espressif/v6.0.2/esp-idf/components/freertos /home/milu/.espressif/v6.0.2/esp-idf/components/hal /home/milu/.espressif/v6.0.2/esp-idf/components/heap /home/milu/.espressif/v6.0.2/esp-idf/components/http_parser /home/milu/Documents/Progetti/ESP/BME280/components/i2c /home/milu/.espressif/v6.0.2/esp-idf/components/ieee802154 /home/milu/.espressif/v6.0.2/esp-idf/components/log /home/milu/.espressif/v6.0.2/esp-idf/components/lwip /home/milu/Documents/Progetti/ESP/BME280/main /home/milu/.espressif/v6.0.2/esp-idf/components/mbedtls /home/milu/Documents/Progetti/ESP/BME280/components/mqtt_client_comp /home/milu/Documents/Progetti/ESP/BME280/components/nvs_component /home/milu/.espressif/v6.0.2/esp-idf/components/nvs_flash /home/milu/.espressif/v6.0.2/esp-idf/components/nvs_sec_provider /home/milu/.espressif/v6.0.2/esp-idf/components/openthread /home/milu/.espressif/v6.0.2/esp-idf/components/partition_table /home/milu/.espressif/v6.0.2/esp-idf/components/protobuf-c /home/milu/.espressif/v6.0.2/esp-idf/components/protocomm /home/milu/.espressif/v6.0.2/esp-idf/components/pthread /home/milu/.espressif/v6.0.2/esp-idf/components/riscv /home/milu/.espressif/v6.0.2/esp-idf/components/soc /home/milu/.espressif/v6.0.2/esp-idf/components/spi_flash /home/milu/.espressif/v6.0.2/esp-idf/components/tcp_transport /home/milu/.espressif/v6.0.2/esp-idf/components/vfs /home/milu/Documents/Progetti/ESP/BME280/components/wifi /home/milu/.espressif/v6.0.2/esp-idf/components/wpa_supplicant
+-- Configuring done (7.6s)
+-- Generating done (0.5s)
+-- Build files have been written to: /home/milu/Documents/Progetti/ESP/BME280/build

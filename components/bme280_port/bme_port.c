@@ -14,6 +14,7 @@ static i2c_master_bus_handle_t bus_handle;
 static QueueHandle_t sensorDataQueue;
 static EventGroupHandle_t bme_event_group;
 
+/*
 static T_TemperatureCoefficient temp_coeff;
 static T_HumidityCoefficient hum_coeff;
 static T_PressureCoefficient pres_coeff;
@@ -23,6 +24,7 @@ static int32_t Humidity_not_calibrated;
 static int32_t Pressure_not_calibrated;
 
 static int32_t temperature_calibration_factor;
+*/
 
 EventGroupHandle_t getEventGroup()
 {
@@ -34,7 +36,7 @@ QueueHandle_t* bme280Port_getQueueReference()
 	return &sensorDataQueue;
 }
 
-ErrorCode_t bme280Port_read_T_coefficients(T_TemperatureCoefficient *ptrTC)
+BME280_ErrorCode_t bme280Port_read_T_coefficients(T_TemperatureCoefficient *ptrTC)
 {
 	uint8_t temp;
 	esp_err_t rval = ESP_OK;
@@ -54,10 +56,10 @@ ErrorCode_t bme280Port_read_T_coefficients(T_TemperatureCoefficient *ptrTC)
 	rval |= i2c_register_read(dev_handle, BME280_T3_1_COEFF, &temp, 1);
 	ptrTC->T3 += temp<<8;
 	
-	return rval;
+	return (rval == ESP_OK) ? BME280_OK : BME280_ERR_GENERIC;
 }
 
-ErrorCode_t bme280Port_read_H_coefficients(T_HumidityCoefficient *ptrHC)
+BME280_ErrorCode_t bme280Port_read_H_coefficients(T_HumidityCoefficient *ptrHC)
 {
 	uint8_t temp;
 	esp_err_t rval = ESP_OK;
@@ -86,10 +88,10 @@ ErrorCode_t bme280Port_read_H_coefficients(T_HumidityCoefficient *ptrHC)
 	rval |= i2c_register_read(dev_handle, BME280_H6_1_COEFF, &temp, 1);
 	ptrHC->H6 = temp;
 	
-	return rval;
+	return (rval == ESP_OK) ? BME280_OK : BME280_ERR_GENERIC;
 }
 
-ErrorCode_t bme280Port_read_P_coefficients(T_PressureCoefficient *ptrPC)
+BME280_ErrorCode_t bme280Port_read_P_coefficients(T_PressureCoefficient *ptrPC)
 {
 	uint8_t temp;
 	esp_err_t rval = ESP_OK;
@@ -139,10 +141,10 @@ ErrorCode_t bme280Port_read_P_coefficients(T_PressureCoefficient *ptrPC)
 	rval |= i2c_register_read(dev_handle, BME280_P9_2_COEFF, &temp, 1);
 	ptrPC->P9 += temp<<8;
 
-	return rval;
+	return (rval == ESP_OK) ? BME280_OK : BME280_ERR_GENERIC;
 }
 
-ErrorCode_t bme280Port_read_T_value(T_TemperatureCoefficient *ptrTC, int32_t *ptr)
+BME280_ErrorCode_t bme280Port_read_T_value(T_TemperatureCoefficient *ptrTC, int32_t *ptr)
 {
 	uint8_t t1,t2,t3;
 	esp_err_t rval = ESP_OK;
@@ -152,10 +154,10 @@ ErrorCode_t bme280Port_read_T_value(T_TemperatureCoefficient *ptrTC, int32_t *pt
 	rval |= i2c_register_read(dev_handle, BME_T2_VAL, &t3, 1);
 	
 	*ptr = ((int32_t)(t3))>>4 | ((int32_t)(t2))<<4 | ((int32_t)(t1)) <<12; 
-	return rval;
+	return (rval == ESP_OK) ? BME280_OK : BME280_ERR_GENERIC;
 }
 
-ErrorCode_t bme280Port_read_H_value(T_HumidityCoefficient *ptrHC, int32_t *ptr)
+BME280_ErrorCode_t bme280Port_read_H_value(T_HumidityCoefficient *ptrHC, int32_t *ptr)
 {
 	uint8_t h1,h2;
 	int32_t h;
@@ -166,10 +168,10 @@ ErrorCode_t bme280Port_read_H_value(T_HumidityCoefficient *ptrHC, int32_t *ptr)
 	
 	h = h2|h1<<8;
 	*ptr = h;
-	return rval;
+	return (rval == ESP_OK) ? BME280_OK : BME280_ERR_GENERIC;
 }
 
-ErrorCode_t bme280Port_read_P_value(T_PressureCoefficient *ptrPC, int32_t *ptr)
+BME280_ErrorCode_t bme280Port_read_P_value(T_PressureCoefficient *ptrPC, int32_t *ptr)
 {
 	uint8_t p1,p2,p3;
 	esp_err_t rval = ESP_OK;
@@ -181,11 +183,11 @@ ErrorCode_t bme280Port_read_P_value(T_PressureCoefficient *ptrPC, int32_t *ptr)
 	p3=p3&0xF0;
 	*ptr=(p1<<12 | p2<<4 | (p3)>>4);
 	
-	return rval;
+	return (rval == ESP_OK) ? BME280_OK : BME280_ERR_GENERIC;
 }
 
 
-ErrorCode_t bme280_port_init()
+BME280_ErrorCode_t bme280_port_init()
 {
 	uint8_t deviceID;
 	esp_err_t rval = ESP_OK;
@@ -205,30 +207,31 @@ ErrorCode_t bme280_port_init()
 	xEventGroupSetBits(bme_event_group, BME_IS_READY);
 
 
-	return rval;
+	return (rval == ESP_OK) ? BME280_OK : BME280_ERR_GENERIC;
 }
 
-ErrorCode_t bme280_get_deviceID(uint8_t *rval)
+BME280_ErrorCode_t bme280_get_deviceID(uint8_t *rval)
 {
-	return i2c_register_read(dev_handle, BME280_WHO_AM_I_REG_ADDR, rval, 1);;
+	int error = i2c_register_read(dev_handle, BME280_WHO_AM_I_REG_ADDR, rval, 1);
+	return (error == ESP_OK) ? BME280_OK : BME280_ERR_GENERIC; 
 }
 
-ErrorCode_t bme280_get_P(uint32_t *rval)
-{
-	*rval = 0;
-	return ERR_GENERIC;
-}
-
-ErrorCode_t bme280_get_T(uint32_t *rval)
+BME280_ErrorCode_t bme280_get_P(uint32_t *rval)
 {
 	*rval = 0;
-	return ERR_GENERIC;
+	return BME280_ERR_GENERIC;
 }
 
-ErrorCode_t bme280_get_v(uint32_t *rval)
+BME280_ErrorCode_t bme280_get_T(uint32_t *rval)
 {
 	*rval = 0;
-	return ERR_GENERIC;
+	return BME280_ERR_GENERIC;
+}
+
+BME280_ErrorCode_t bme280_get_v(uint32_t *rval)
+{
+	*rval = 0;
+	return BME280_ERR_GENERIC;
 }
 
 
