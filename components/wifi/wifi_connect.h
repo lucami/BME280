@@ -14,7 +14,9 @@
 #define WIFI_CONNECTED_BIT BIT0
 
 extern EventGroupHandle_t wifi_event_group;
+extern EventBits_t wifi_bits;
 
 void wifi_start(void);
+void wifi_init(void);
 
 #endif /* COMPONENTS_WIFI_WIFI_CONNECT_H_ */

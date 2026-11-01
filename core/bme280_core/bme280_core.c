@@ -85,11 +85,22 @@
 
 
  
- BME280_ErrorCode_t bme280_core_init()
+ BME280_ErrorCode_t bme280_core_init_normal()
  {
 	BME280_ErrorCode_t rval = BME280_OK;
 	printf("\nCore init");
- 	rval |= bme280_port_init();
+ 	rval |= bme280_port_init_normal();
+ 	rval |= read_all_coefficients();
+
+
+ 	return rval;
+ }
+
+  BME280_ErrorCode_t bme280_core_init_forced()
+ {
+	BME280_ErrorCode_t rval = BME280_OK;
+	printf("\nCore init");
+ 	rval |= bme280_port_init_lp();
  	rval |= read_all_coefficients();
 
 
@@ -110,3 +121,5 @@
 
  	return rval;
  }
+
+ 

@@ -65,6 +65,8 @@
 #define BME280_P9_1_COEFF		   0x9E
 #define BME280_P9_2_COEFF		   0x9F
 
+#define BME_STATUS_REG             0xF3
+
 #define BME_T0_VAL				   0xFA
 #define BME_T1_VAL				   0xFB
 #define BME_T2_VAL				   0xFC

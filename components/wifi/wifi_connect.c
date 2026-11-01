@@ -70,6 +70,7 @@ static void wifi_task(void *pvParameters)
     vTaskDelete(NULL);
 }
 
+
 void wifi_start(void)
 {
 	wifi_event_group = xEventGroupCreate();
@@ -77,4 +78,10 @@ void wifi_start(void)
     xTaskCreate(wifi_task, "wifi_task", 4096, NULL, 5, NULL);
 	xTaskCreate(wifi_sendData, "WiFi send", 2048, NULL, 1, NULL);
 
+}
+
+void wifi_init(void)
+{
+	wifi_event_group = xEventGroupCreate();
+    xTaskCreate(wifi_task, "wifi_task_lp", 4096, NULL, 5, NULL);
 }

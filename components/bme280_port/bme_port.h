@@ -14,6 +14,8 @@
  #include "freertos/queue.h"
 //#include "../../core/bme280_core/bme280_core.h"
 
+extern EventGroupHandle_t bme_lp_event_group;
+
 typedef enum {
     BME280_OK = 0,
     BME280_ERR_GENERIC
@@ -68,10 +70,12 @@ BME280_ErrorCode_t bme280Port_read_H_value(T_HumidityCoefficient*, int32_t*);
 BME280_ErrorCode_t bme280Port_read_P_value(T_PressureCoefficient*, int32_t*);
 EventGroupHandle_t getEventGroup();
 
-BME280_ErrorCode_t bme280_port_init();
+BME280_ErrorCode_t bme280_port_init_normal();
+BME280_ErrorCode_t bme280_port_init_lp();
 
 #define BME_IS_READY 			BIT0
 #define BME_NEW_DATA_AVAILABLE	BIT1
+#define BME_FAULT	 			BIT2
 
 
 #endif /* COMPONENTS_BME280_PORT_BME_PORT_H_ */

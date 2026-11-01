@@ -7,6 +7,7 @@
 #include "nvs_component.h"
 #include "mqtt_private.h"
 
+EventGroupHandle_t mqtt_lp_event;
 extern EventGroupHandle_t wifi_event_group;
 
 static QueueHandle_t *sensorDataQueueReference;
@@ -150,6 +151,63 @@ void mqtt_init()
 
 	sensorDataQueueReference = bme280Port_getQueueReference();
     xTaskCreate(mqtt_Task, "MQTT send", 2048, NULL, 1, NULL);
+
+}
+
+void mqtt_lp_event_handler_function(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data)
+{
+    esp_mqtt_event_handle_t event = event_data;
+    switch (event_id)
+    {
+        case MQTT_EVENT_CONNECTED:
+			xEventGroupSetBits(mqtt_lp_event, MQTT_CONNECTED_BIT );
+            break;
+
+        case MQTT_EVENT_PUBLISHED:
+			xEventGroupSetBits(mqtt_lp_event, MQTT_PUBLISHED_BIT );
+			
+            break;
+        default:
+            break;
+    }
+
+}
+
+
+void mqtt_init_lp()
+{
+	mqtt_lp_event = xEventGroupCreate();
+
+	if(nvs_readKey(_MQTT_NVS_NAMESPACE, _MQTT_NVS_TOPIC_KEY, mqtt_topic, &key_length) != NVS_OK)
+	{
+		sprintf(mqtt_topic, "unregistered");
+	}
+
+	printf("\n debug MQTT topic: %s\n", mqtt_topic);
+
+    mqtt_cfg.broker.address.uri = _BROKER_ADDRESS;
+    mqtt_client = esp_mqtt_client_init(&mqtt_cfg);
+	mqtt_status = MQTT_PRESENTING_STATUS;
+
+	esp_err_t rval = esp_mqtt_client_register_event(mqtt_client, ESP_EVENT_ANY_ID, mqtt_lp_event_handler_function, NULL);
+
+	esp_mqtt_client_start(mqtt_client);
+
+}
+
+void mqtt_send(int32_t t,int32_t h,int32_t p)
+{
+	char payload[64];
+	uint8_t length;
+
+	length = snprintf(payload, 64, "{\"t\":%"PRIi32",\"h\":%"PRIi32",\"p\":%"PRIi32"}", t, h/1024, p/256/100);		
+	
+	esp_mqtt_client_publish(mqtt_client, mqtt_topic, payload, length, 1, 0);
+}
+
+void mqtt_stop()
+{
+	esp_mqtt_client_stop(mqtt_client);
 
 }
 

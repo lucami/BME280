@@ -12,7 +12,8 @@
  #include "bme_port.h"
 
 
- BME280_ErrorCode_t bme280_core_init();
+ BME280_ErrorCode_t bme280_core_init_normal();
+  BME280_ErrorCode_t bme280_core_init_forced();
  BME280_ErrorCode_t bme280_core_deviceID(uint8_t*);
  BME280_ErrorCode_t bme280_core_getTHP(int32_t *t, int32_t *h, int32_t *p);
 
